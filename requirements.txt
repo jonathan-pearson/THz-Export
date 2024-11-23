@@ -1,5 +1,7 @@
 pandas
 numpy
 jupyter
-dvc
-tqdm
+scikit-learn
+umap-learn
+seaborn
+scipy
