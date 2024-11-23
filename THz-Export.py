@@ -95,11 +95,17 @@ class dataset():
                 
                 # Rename the columns after 'AC' to 'X', 'Y', 'Z', and then start counting from 1
                 df.columns = list(df.columns[:4]) + ['X', 'Y', 'Z'] + list(range(1, len(df.columns) - 6))
-
+                
+                # Drop the Z column. This value is not needed in our experiment
+                df = df.drop(['Z'], axis = 1)
+                
                 # Append the dataframe to the data list
                 self.data.append(df)
         #Concatenate all the dataframes together and turn the data list into one dataframe (this makes a really big dataframe)
         self.data = pd.concat(self.data, ignore_index = True)
+        
+        #Dropping of Z is performed before concatenation to ideally reduce memory usage
+        #self.data = self.data.drop(['Z'], axis = 1)
     
     #This member function will save the dataframe to a csv file when called
     def df_to_csv(self):
